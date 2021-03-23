@@ -74,7 +74,7 @@ class Finder:
 class BoardMetrics:
 	def __init__(self, area, board):
 		self.area = area
-		self.spacing = 3
+		self.spacing = 5
 		self.left = area[0] + self.spacing
 		self.top = area[1] + self.spacing
 		self.width = area[2] - area[0] - 2 * self.spacing
@@ -96,7 +96,7 @@ def draw_board(surface, area, board):
 	metrics = BoardMetrics(area, board)
 
 	colors = {
-		maze.CellType.Empty: (255,0,255), #empty block
+		maze.CellType.Empty: (255,255,255), #empty block
 		maze.CellType.Block: (128,100,0), #obstacle block
 	}
 	marks = {
@@ -104,13 +104,14 @@ def draw_board(surface, area, board):
 		maze.CellMark.End: (0,0,0), #end position
 	}
 	surface.blit(bg, (0,0))
+
 	for y in range(0,metrics.num_y):
 		for x in range(0,metrics.num_x):
 			cell = board.at([x,y])
 			clr = colors.get(cell.type, ())
 			cell_rect = metrics.cell_rect( [x, y] )
 			pygame.draw.rect(surface, clr, cell_rect)
-			
+	
 			if cell.count != math.inf:
 				number = cell_font.render( "{}".format(cell.count), True, (0,0,0)) #text-color
 				surface.blit(number, trans_rect(number.get_rect(), 
@@ -128,6 +129,7 @@ def draw_path(surface, area, board, path):
 	for i in range(0,len(path)-1):
 		ctr_a = metrics.cell_center( path[i].pos )
 		ctr_b = metrics.cell_center( path[i+1].pos )
+		metrics.spacing = 3
 		pygame.draw.line(surface, (0,0,0),  ctr_a, ctr_b, metrics.spacing ) #path
 		
 
