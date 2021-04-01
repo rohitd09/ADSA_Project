@@ -20,9 +20,7 @@ class MyFinder(apf.draw.Finder):
 
 header_text = """Keys:
 	Left - Lower maximum distance
-	Right - Increase maximum distance
-	R - create a new maze
-	Esc - Exit"""
+	Right - Increase maximum distance"""
 print( header_text )
 
 finder = MyFinder()
