@@ -74,7 +74,7 @@ class Finder:
 class BoardMetrics:
 	def __init__(self, area, board):
 		self.area = area
-		self.spacing = 5
+		self.spacing = 25
 		self.left = area[0] + self.spacing
 		self.top = area[1] + self.spacing
 		self.width = area[2] - area[0] - 2 * self.spacing
